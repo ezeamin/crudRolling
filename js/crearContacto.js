@@ -52,6 +52,21 @@ export const crearContactoTabla = (contacto) => {
 
   tr.appendChild(td6);
   //
+  const td7 = document.createElement("td");
+  const buttonEditar = document.createElement("button");
+  const buttonEliminar = document.createElement("button");
+
+  buttonEditar.classList = "btn btn-warning mb-2 me-2"
+  buttonEliminar.classList = "btn btn-danger mb-2"
+
+  buttonEditar.innerText = "Editar"
+  buttonEliminar.innerText = "Eliminar"
+
+  td7.appendChild(buttonEditar)
+  td7.appendChild(buttonEliminar)
+
+  tr.appendChild(td7);
+  //
 
   tbody.appendChild(tr);
 };
