@@ -1,4 +1,5 @@
 import { Contacto } from "./Contacto.js";
+import { crearContactoTabla } from "./crearContacto.js";
 import {
   validateEmail,
   validateName,
@@ -6,7 +7,19 @@ import {
   validateURL,
 } from "./validators.js";
 
+let contactosLS = localStorage.getItem("contactos")
+contactosLS = JSON.parse(contactosLS)
+//console.log(contactosLS)
+
 let contactos = [];
+
+if(contactosLS !== null){
+  contactos = contactosLS;
+
+  contactos.forEach(elemento => {
+    crearContactoTabla(elemento);
+  })
+}
 
 const formularioContacto = document.getElementById("formContacto");
 
@@ -50,56 +63,7 @@ campoNotas.addEventListener("blur", (e) => {
   notas = e.target.value;
 });
 
-const crearContacto = (contacto) => {
-  const tbody = document.getElementById("tbody__admin");
-
-  const tr = document.createElement("tr");
-
-  //
-  const td1 = document.createElement("td");
-
-  td1.innerText = contacto.codigo;
-
-  tr.appendChild(td1);
-  //
-  //
-  const td2 = document.createElement("td");
-
-  td2.innerText = contacto.nombre;
-
-  tr.appendChild(td2);
-  //
-  //
-  const td3 = document.createElement("td");
-
-  td3.innerText = contacto.telefono;
-
-  tr.appendChild(td3);
-  //
-  //
-  const td4 = document.createElement("td");
-
-  td4.innerText = contacto.email;
-
-  tr.appendChild(td4);
-  //
-  //
-  const td5 = document.createElement("td");
-
-  td5.innerText = contacto.imagen;
-
-  tr.appendChild(td5);
-  //
-  //
-  const td6 = document.createElement("td");
-
-  td6.innerText = contacto.notas;
-
-  tr.appendChild(td6);
-  //
-
-  tbody.appendChild(tr);
-
+const agregarContactoALS = (contacto) => {
   // agrego contacto a la lista
   contactos.push(contacto);
   //console.log(contactos)
@@ -109,7 +73,7 @@ const crearContacto = (contacto) => {
   //console.log(contactosJSON);
 
   localStorage.setItem("contactos", contactosJSON);
-};
+}
 
 formularioContacto.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -121,7 +85,8 @@ formularioContacto.addEventListener("submit", (e) => {
     validateURL(imagen, campoImagen)
   ) {
     const contacto = new Contacto(nombre, telefono, email, imagen, notas);
-    crearContacto(contacto);
+    crearContactoTabla(contacto);
+    agregarContactoALS(contacto);
   } else {
     console.log("Algun dato no es valido");
   }
