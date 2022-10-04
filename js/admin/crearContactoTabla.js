@@ -1,3 +1,6 @@
+import { deleteContacto } from "./delete.js";
+import { cargarDatosEnFormulario } from "./update.js";
+
 export const crearContactoTabla = (contacto) => {
   const tbody = document.getElementById("tbody__admin");
 
@@ -61,6 +64,14 @@ export const crearContactoTabla = (contacto) => {
 
   buttonEditar.innerText = "Editar"
   buttonEliminar.innerText = "Eliminar"
+
+  buttonEditar.onclick = () => {
+    cargarDatosEnFormulario(contacto.codigo)
+  }
+
+  buttonEliminar.onclick = () => {
+    deleteContacto(contacto.codigo)
+  }
 
   td7.appendChild(buttonEditar)
   td7.appendChild(buttonEliminar)
