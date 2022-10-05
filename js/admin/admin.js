@@ -14,7 +14,7 @@ contactosLS = JSON.parse(contactosLS);
 let contactos = [];
 
 if (contactosLS !== null) {
-  contactos = contactosLS.reverse();
+  contactos = contactosLS;
 
   contactos.forEach((elemento) => {
     crearContactoTabla(elemento);
@@ -67,7 +67,7 @@ campoNotas.addEventListener("blur", (e) => {
 
 const agregarContactoALS = (contacto) => {
   // agrego contacto a la lista
-  contactos.push(contacto);
+  contactos.unshift(contacto);
   //console.log(contactos)
 
   // JavaScript Object Notation
@@ -158,7 +158,7 @@ formularioContacto.addEventListener("submit", (e) => {
 });
 
 export const recargarDatos = () => {
-  const contactosLS = JSON.parse(localStorage.getItem("contactos")).reverse();
+  const contactosLS = JSON.parse(localStorage.getItem("contactos"));
 
   //vaciar tabla
   const tbody = document.getElementById("tbody__admin");
