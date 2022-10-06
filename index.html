@@ -35,19 +35,49 @@
           <div class="collapse navbar-collapse" id="navbarAgenda">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                <a class="nav-link active" aria-current="page" href="#"
+                  >Inicio</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./admin.html"
-                  >Admin</a
-                >
+                <a class="nav-link" href="./admin.html">Admin</a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
-    <main></main>
+    <main class="container my-5">
+      <section class="p-3 bg-danger rounded mb-3">
+        <h2 class="text-light">Enviar mensaje</h2>
+        <hr>
+        <form id="formMensaje">
+          <div>
+            <label class="mb-2 text-light">Seleccione un contacto</label>
+            <select class="form-select" id="selectContactos"></select>
+          </div>
+          <div>
+            <label class="my-2 text-light">Mensaje</label>
+            <textarea
+              id="textAreaMensaje"
+              rows="3"
+              placeholder="Escriba su mensaje"
+              class="form-control"
+            ></textarea>
+          </div>
+          <div class="text-end">
+            <button type="submit" class="btn btn-secondary mt-2">Enviar mensaje</button>
+          </div>
+        </form>
+      </section>
+      <section>
+        <form id="formBusqueda" class="d-flex">
+          <input id="buscarContacto" type="text" class="form-control" placeholder="Buscar contacto">
+          <button type="submit" class="btn btn-secondary ms-2">Buscar</button>
+        </form>
+      </section>
+      <section class="row" id="agendaIndex"></section>
+    </main>
     <footer class="bg-secondary py-5">
       <section class="container">
         <p class="text-center text-light mb-0">
